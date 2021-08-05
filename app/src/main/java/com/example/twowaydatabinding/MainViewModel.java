@@ -4,41 +4,22 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.databinding.Bindable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.twowaydatabinding.listener.OnClickListener;
-import com.example.twowaydatabinding.model.UserData;
-import com.example.twowaydatabinding.BR;
 
 public class MainViewModel extends AndroidViewModel implements OnClickListener {
 
-    private MutableLiveData<UserData> userData;
     private final MutableLiveData<String> input = new MutableLiveData<>();
-
+    private final MutableLiveData<String> output = new MutableLiveData<>();
 
     public MainViewModel(Application application) {
         super(application);
-        /*
-        userData = new MutableLiveData<>();
-        userData.getValue().setInput("lol"););
-        userData.getValue().setOutput("One way data binding");
-         */
-
-    }
-
-    public MutableLiveData<String> getInput() {
-        return input;
-    }
-
-    public void setInput(String input) {
-        this.input.setValue(input);
     }
 
     @Override
-    public void onButtonClick(MutableLiveData<String> input) {
+    public void onButtonClick1(MutableLiveData<String> input) {
         Context context = getApplication().getApplicationContext();
         // show input if not empty
         if (!input.getValue().isEmpty()) {
@@ -48,5 +29,23 @@ public class MainViewModel extends AndroidViewModel implements OnClickListener {
         }
     }
 
+    @Override
+    public void onButtonClick2(MutableLiveData<String> input2) {
+        Context context = getApplication().getApplicationContext();
+
+        // show input if not empty
+        if (!input.getValue().isEmpty()) {
+           output.setValue(input.getValue());
+        }
+        Toast.makeText(context,
+                "Your output: " + output.getValue(),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public MutableLiveData<String> getInput() {
+        return input;
+    }
+
+    public MutableLiveData<String> getOutput() { return output; }
 
 }

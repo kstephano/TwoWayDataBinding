@@ -33,5 +33,9 @@ public class MainActivity extends AppCompatActivity  {
         mainViewModel.getInput().observe(this, s -> {
             binding.textViewOutput.setText(s);
         });
+
+        mainViewModel.getOutput().observe(this, s -> {
+            binding.textViewButtonOutput.setText(s);
+        });
     }
 }

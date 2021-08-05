@@ -7,32 +7,31 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.twowaydatabinding.BR;
 
 public class UserData extends BaseObservable {
-    private MutableLiveData<String> input;
-    private String output;
+    private String firstName;
+    private String lastName;
 
-    public UserData() {
+    public UserData(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = firstName;
     }
 
-    public MutableLiveData<String> getInput() {
-        if (input == null) {
-            input = new MutableLiveData<String>();
-        }
-        return input;
+    @Bindable
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setInput(MutableLiveData<String> input) {
-        this.input = input;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+        notifyPropertyChanged(BR.firstName);
     }
 
-
-    public String getOutput() {
-        if (output != null) {
-            return output;
-        }
-        return "";
+    @Bindable
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setOutput(String output) {
-        this.output = output;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+        notifyPropertyChanged(BR.lastName);
     }
 }
