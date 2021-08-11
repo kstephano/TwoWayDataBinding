@@ -35,7 +35,10 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         mainViewModel.getOutput().observe(this, s -> {
-            binding.textViewButtonOutput.setText(s);
+            if (!binding.editTextButtonOutput.getText().toString().equals(s)) {
+                binding.editTextButtonOutput.setText(s);
+            }
         });
+
     }
 }
